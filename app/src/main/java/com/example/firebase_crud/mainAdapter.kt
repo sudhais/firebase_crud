@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
 class mainAdapter(private val taskList: MutableList<mainModel>) : RecyclerView.Adapter<mainAdapter.ViewHolder>() {
+
+    private val firebaseHelper = FirebaseHelper()
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val name:TextView = itemView.findViewById(R.id.name)
@@ -40,6 +43,16 @@ class mainAdapter(private val taskList: MutableList<mainModel>) : RecyclerView.A
 //            taskList.removeAt(position)
             // Notify the adapter that an item has been removed
 //            notifyItemRemoved(position)
+            val context = holder.itemView.context
+            firebaseHelper.deleteTask(task.id!!, {
+                // Task creation was successful
+//                Toast.makeText(this, "Task created successfully", Toast.LENGTH_SHORT).show()
+
+            }, { exception ->
+                // Task creation failed, handle the error
+//                Toast.makeText(this, "Task creation failed: ${exception.message}", Toast.LENGTH_SHORT).show()
+            })
+
         }
 
         holder.btn_edit.setOnClickListener {
@@ -47,6 +60,7 @@ class mainAdapter(private val taskList: MutableList<mainModel>) : RecyclerView.A
             val context = holder.itemView.context
 
             val intent = Intent(context, EditItem::class.java)
+            intent.putExtra("id", task.id)
             intent.putExtra("name", task.name)
             intent.putExtra("email", task.email)
             intent.putExtra("subject", task.subject)

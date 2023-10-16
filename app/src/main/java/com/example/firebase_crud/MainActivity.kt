@@ -39,11 +39,13 @@ class MainActivity : ComponentActivity() {
         val tasksListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val taskList = mutableListOf<mainModel>()
-                for (dataSnapshot in snapshot.children) {
-                    val task = dataSnapshot.getValue(mainModel::class.java)
-//                    task?.id = dataSnapshot.key
-                    task?.let { taskList.add(it) }
+                if(snapshot.exists()){
+                    for (dataSnapshot in snapshot.children) {
+                        var task = dataSnapshot.getValue(mainModel::class.java)
+                        task?.id = dataSnapshot.key
+                        task?.let { taskList.add(it) }
 //                    Log.e("1111","${dataSnapshot.key}")
+                    }
                 }
                 adapter = mainAdapter(taskList)
                 recyclerView.adapter = adapter
@@ -54,7 +56,8 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-//        firebaseHelper.getTasks(tasksListener)
+        firebaseHelper.getTasks(tasksListener)
+
 //        val test = firebaseHelper.getKey(mainModel("test","test@gmail.com","test"))
 //        Log.e("2222", "${test}")
 

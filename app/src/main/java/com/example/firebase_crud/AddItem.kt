@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import com.google.firebase.database.DatabaseReference
 
 class AddItem : ComponentActivity() {
     private val firebaseHelper = FirebaseHelper()
@@ -22,11 +23,14 @@ class AddItem : ComponentActivity() {
         var btn_create:Button = findViewById(R.id.btn_create)
 
         btn_create.setOnClickListener {
+            val taskRef = firebaseHelper.databaseReference.push().key!!
             val newTask = mainModel(
+                taskRef,
                 name = txt_name.text.toString(),
                 email = txt_email.text.toString(),
                 subject = txt_subject.text.toString()
             )
+
             Log.e("1234", "${newTask}")
             firebaseHelper.createTask(newTask, {
                 // Task creation was successful
