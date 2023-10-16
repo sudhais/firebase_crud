@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">firebase_crud</string>
+    <string name="title_activity_edit_item">EditItem</string>
 </resources>

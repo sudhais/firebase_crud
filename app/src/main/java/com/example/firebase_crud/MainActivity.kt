@@ -1,6 +1,9 @@
 package com.example.firebase_crud
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.Button
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -29,8 +32,9 @@ class MainActivity : ComponentActivity() {
 
         recyclerView = findViewById(R.id.rv)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = mainAdapter(emptyList())
+        adapter = mainAdapter(mutableListOf())
         recyclerView.adapter = adapter
+        var btn_add:Button = findViewById(R.id.btn_add)
 
         val tasksListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -39,6 +43,7 @@ class MainActivity : ComponentActivity() {
                     val task = dataSnapshot.getValue(mainModel::class.java)
 //                    task?.id = dataSnapshot.key
                     task?.let { taskList.add(it) }
+//                    Log.e("1111","${dataSnapshot.key}")
                 }
                 adapter = mainAdapter(taskList)
                 recyclerView.adapter = adapter
@@ -49,7 +54,16 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-        firebaseHelper.getTasks(tasksListener)
+//        firebaseHelper.getTasks(tasksListener)
+//        val test = firebaseHelper.getKey(mainModel("test","test@gmail.com","test"))
+//        Log.e("2222", "${test}")
+
+//        adapter.
+
+        btn_add.setOnClickListener{
+            val intent = Intent(this,AddItem::class.java)
+            startActivity(intent)
+        }
     }
 }
 

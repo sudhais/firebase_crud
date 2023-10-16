@@ -35,4 +35,25 @@
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
+
+    <ImageView
+        android:id="@+id/btn_delete"
+        android:layout_width="67dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/delete_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.172" />
+
+    <ImageView
+        android:id="@+id/btn_edit"
+        android:layout_width="71dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="43dp"
+        android:src="@drawable/edit_note"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
