@@ -46,11 +46,11 @@ class mainAdapter(private val taskList: MutableList<mainModel>) : RecyclerView.A
             val context = holder.itemView.context
             firebaseHelper.deleteTask(task.id!!, {
                 // Task creation was successful
-//                Toast.makeText(this, "Task created successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Task created successfully", Toast.LENGTH_SHORT).show()
 
             }, { exception ->
                 // Task creation failed, handle the error
-//                Toast.makeText(this, "Task creation failed: ${exception.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Task creation failed: ${exception.message}", Toast.LENGTH_SHORT).show()
             })
 
         }
