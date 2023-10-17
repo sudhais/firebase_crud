@@ -62,14 +62,14 @@ class FirebaseHelper {
 //        databaseReference.addValueEventListener(listener)
 //    }
 
-    fun getTasks(callback: (MutableList<mainModel>?) -> Unit) {
+    fun getTasks(callback: (MutableList<itemModel>?) -> Unit) {
         databaseReference.addValueEventListener(
             object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val taskList = mutableListOf<mainModel>()
+                    val taskList = mutableListOf<itemModel>()
                     if(snapshot.exists()){
                         for (dataSnapshot in snapshot.children) {
-                            var task = dataSnapshot.getValue(mainModel::class.java)
+                            var task = dataSnapshot.getValue(itemModel::class.java)
                             task?.id = dataSnapshot.key
                             task?.let { taskList.add(it) }
                         }

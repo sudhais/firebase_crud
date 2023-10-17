@@ -11,7 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-class mainAdapter(private val taskList: MutableList<mainModel>) : RecyclerView.Adapter<mainAdapter.ViewHolder>() {
+class mainAdapter(private val taskList: MutableList<itemModel>) : RecyclerView.Adapter<mainAdapter.ViewHolder>() {
 
     private val firebaseHelper = FirebaseHelper()
 
@@ -40,9 +40,9 @@ class mainAdapter(private val taskList: MutableList<mainModel>) : RecyclerView.A
         holder.email.text = task.email
         holder.subject.text = task.subject
 
-//        val bytes = android.util.Base64.decode(task.image,android.util.Base64.DEFAULT)
-//        val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-//        holder.imbView.setImageBitmap(bitmap)
+        val bytes = android.util.Base64.decode(task.image,android.util.Base64.DEFAULT)
+        val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+        holder.imbView.setImageBitmap(bitmap)
 
         holder.btn_delete.setOnClickListener {
             // Remove the item from the data list

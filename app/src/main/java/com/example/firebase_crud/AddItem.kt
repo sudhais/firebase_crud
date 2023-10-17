@@ -35,7 +35,7 @@ class AddItem : ComponentActivity() {
          btn_image = findViewById(R.id.btn_image)
         var imgView : ImageView = findViewById(R.id.imageView)
 
-        var image:String = ""
+        var image:String? = ""
 
         btn_create.setOnClickListener {
             val taskRef = firebaseHelper.databaseReference.push().key!!
@@ -46,7 +46,7 @@ class AddItem : ComponentActivity() {
                 subject = txt_subject.text.toString()
             )
 
-            Log.e("1234", "${newTask}")
+//            Log.e("1234", "${newTask}")
 //            firebaseHelper.createTask(newTask, {
 //                // Task creation was successful
 //                Toast.makeText(this, "Task created successfully", Toast.LENGTH_SHORT).show()
@@ -65,7 +65,7 @@ class AddItem : ComponentActivity() {
                 name = txt_name.text.toString(),
                 email = txt_email.text.toString(),
                 subject = txt_subject.text.toString(),
-                image = imgView.toString()
+                image
             )
             firebaseHelper.createTaskWithImage(imgTask, {
                 // Task creation was successful

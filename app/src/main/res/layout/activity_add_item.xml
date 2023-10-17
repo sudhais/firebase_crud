@@ -56,13 +56,13 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:layout_marginBottom="45dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_image"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="150dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_create"
         app:layout_constraintStart_toStartOf="parent"
         tools:src="@tools:sample/avatars" />
 
-    <Button
+        <Button
         android:id="@+id/btn_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
