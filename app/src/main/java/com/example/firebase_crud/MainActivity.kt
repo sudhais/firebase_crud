@@ -36,6 +36,19 @@ class MainActivity : ComponentActivity() {
         recyclerView.adapter = adapter
         var btn_add:Button = findViewById(R.id.btn_add)
 
+        val check = firebaseHelper.getSingleData("-NgqxRjdbHCnKjmHkhm2"){mainModel ->
+            if (mainModel != null) {
+                // Teacher details retrieved successfully
+                println("Teacher Name: ${mainModel.name}")
+                println("Teacher Email: ${mainModel.email}")
+                println("Teacher Subject: ${mainModel.subject}")
+            } else {
+                // Handle the case where the teacher is not found
+                println("Teacher not found")
+            }
+        }
+        Log.e("1111","${check}")
+
         val tasksListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val taskList = mutableListOf<mainModel>()
@@ -67,21 +80,5 @@ class MainActivity : ComponentActivity() {
             val intent = Intent(this,AddItem::class.java)
             startActivity(intent)
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Firebase_crudTheme {
-        Greeting("Android")
     }
 }
