@@ -58,8 +58,33 @@ class FirebaseHelper {
             }
     }
 
-    fun getTasks(listener: ValueEventListener) {
-        databaseReference.addValueEventListener(listener)
+//    fun getTasks(listener: ValueEventListener) {
+//        databaseReference.addValueEventListener(listener)
+//    }
+
+    fun getTasks(callback: (MutableList<mainModel>?) -> Unit) {
+        databaseReference.addValueEventListener(
+            object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val taskList = mutableListOf<mainModel>()
+                    if(snapshot.exists()){
+                        for (dataSnapshot in snapshot.children) {
+                            var task = dataSnapshot.getValue(mainModel::class.java)
+                            task?.id = dataSnapshot.key
+                            task?.let { taskList.add(it) }
+                        }
+                        callback(taskList)
+                    }
+                    callback(taskList)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle errors
+                }
+            }
+        )
+
+
     }
 
     fun getSingleData(id:String, callback: (mainModel?) -> Unit){

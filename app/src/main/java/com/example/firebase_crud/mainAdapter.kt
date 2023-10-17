@@ -1,6 +1,7 @@
 package com.example.firebase_crud
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,7 @@ class mainAdapter(private val taskList: MutableList<mainModel>) : RecyclerView.A
         val subject:TextView = itemView.findViewById(R.id.subject)
         val btn_delete:ImageView = itemView.findViewById(R.id.btn_delete)
         val btn_edit: ImageView = itemView.findViewById(R.id.btn_edit)
+        val imbView:ImageView = itemView.findViewById(R.id.itmImage)
 
     }
 
@@ -37,6 +39,10 @@ class mainAdapter(private val taskList: MutableList<mainModel>) : RecyclerView.A
         holder.name.text = task.name
         holder.email.text = task.email
         holder.subject.text = task.subject
+
+//        val bytes = android.util.Base64.decode(task.image,android.util.Base64.DEFAULT)
+//        val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+//        holder.imbView.setImageBitmap(bitmap)
 
         holder.btn_delete.setOnClickListener {
             // Remove the item from the data list

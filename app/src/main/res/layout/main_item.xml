@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="170dp">
+    android:layout_height="300dp">
 
     <TextView
         android:id="@+id/name"
@@ -40,20 +40,29 @@
         android:id="@+id/btn_delete"
         android:layout_width="67dp"
         android:layout_height="65dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="88dp"
         android:src="@drawable/delete_button"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/name"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.172" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/btn_edit"
         android:layout_width="71dp"
         android:layout_height="71dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="43dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
         android:src="@drawable/edit_note"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/itmImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subject"
+        tools:srcCompat="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>

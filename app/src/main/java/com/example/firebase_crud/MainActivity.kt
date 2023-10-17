@@ -49,27 +49,32 @@ class MainActivity : ComponentActivity() {
         }
         Log.e("1111","${check}")
 
-        val tasksListener = object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val taskList = mutableListOf<mainModel>()
-                if(snapshot.exists()){
-                    for (dataSnapshot in snapshot.children) {
-                        var task = dataSnapshot.getValue(mainModel::class.java)
-                        task?.id = dataSnapshot.key
-                        task?.let { taskList.add(it) }
-//                    Log.e("1111","${dataSnapshot.key}")
-                    }
-                }
-                adapter = mainAdapter(taskList)
-                recyclerView.adapter = adapter
-            }
+//        val tasksListener = object : ValueEventListener {
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                val taskList = mutableListOf<mainModel>()
+//                if(snapshot.exists()){
+//                    for (dataSnapshot in snapshot.children) {
+//                        var task = dataSnapshot.getValue(mainModel::class.java)
+//                        task?.id = dataSnapshot.key
+//                        task?.let { taskList.add(it) }
+////                    Log.e("1111","${dataSnapshot.key}")
+//                    }
+//                }
+//                adapter = mainAdapter(taskList)
+//                recyclerView.adapter = adapter
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                // Handle errors
+//            }
+//        }
 
-            override fun onCancelled(error: DatabaseError) {
-                // Handle errors
-            }
+        firebaseHelper.getTasks(){taskList ->
+            adapter = mainAdapter(taskList!!)
+            recyclerView.adapter = adapter
         }
 
-        firebaseHelper.getTasks(tasksListener)
+//        firebaseHelper.getTasks(tasksListener)
 
 //        val test = firebaseHelper.getKey(mainModel("test","test@gmail.com","test"))
 //        Log.e("2222", "${test}")
